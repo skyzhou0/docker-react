@@ -1,0 +1,22 @@
+version: '3'
+services:
+  react-app:
+    build: 
+      # go the current fold and fild the Dockerfile.dev to build the docker image.
+      context: .
+      dockerfile: Dockerfile.dev 
+    ports:
+      - "3000:3000"
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app
+  testreactapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev 
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app 
+    command: ["npm", "run", "test"] 
